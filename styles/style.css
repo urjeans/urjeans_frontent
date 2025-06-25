@@ -62,7 +62,7 @@
 }
 
 .wrapper {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -388,15 +388,15 @@ header {
 }
 
 .carousel-slide:nth-child(1) {
-  background-image: url("../photos/Background\ image\ \(1\).png");
+  background-image: url("../assets/hero/hero-bg1.png");
 }
 
 .carousel-slide:nth-child(2) {
-  background-image: url("../photos/Background\ image\ \(1\).png");
+  background-image: url("../assets/hero/hero-bg2.jpg");
 }
 
 .carousel-slide:nth-child(3) {
-  background-image: url("../photos/Background\ image\ \(1\).png");
+  background-image: url("../assets/hero/hero-bg1.png");
 }
 
 .content-hero {
