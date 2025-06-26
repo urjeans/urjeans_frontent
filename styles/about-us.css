@@ -1,4 +1,9 @@
 /* About Us Page Specific Styles */
+*, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 /* Hero */
 .about-hero {
@@ -35,8 +40,7 @@
 .about-section {
   width: 100%;
   padding: 120px 90px;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: var(--roboto-font);
   background-color: #f4f5f7;
 }
 
@@ -56,9 +60,7 @@
   flex-wrap: wrap;
   justify-content: start;
 }
-.card p {
-  text-align: justify;
-}
+
 .ppp {
   margin-top: 3%;
 }
@@ -73,15 +75,6 @@
   margin-bottom: 30px;
 }
 
-.h111 {
-  margin-bottom: 2.5%;
-  margin-top: 3%;
-  font-weight: 500;
-  font-size: 24px;
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 100%;
-}
 
 .card {
   flex: 1;
@@ -94,6 +87,7 @@
   font-weight: 400;
   font-family: var(--roboto-font);
   line-height: 150%;
+  text-align: justify;
 }
 
 .about-image img {
@@ -104,88 +98,18 @@
   margin-top: 40px;
 }
 
-
-.about-h2 {
-  color: #000000;
-  font-size: 35px;
-  font-weight: 500;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 100%;
-  margin-bottom: 10px;
-}
-
-.about-h22 {
-  color: #000000;
-  font-size: 35px;
-  font-weight: 500;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 100%;
-  margin-bottom: 30px;
-}
-
-.h222 {
-  color: #000000;
-  font-size: 35px;
-  font-weight: 500;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 100%;
-  margin-bottom: 30px;
-}
-
-.img3 {
-  width: 100%;
-  height: auto;
-  margin: 30px 0;
-}
-
-.img4 {
-  width: 100%;
-  height: auto;
-}
-
-.about-content p {
-  color: #000000;
-  font-size: 16px;
-  font-weight: 400;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 150%;
-  margin-bottom: 20px;
-}
-
 /* About Section 1 */
 .about-section1 {
   width: 100%;
-  padding: 100px 90px;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  padding: 120px 90px 100px;
+  font-family: var(--roboto-font);
   background-color: #ffffff;
 }
 
-.about-header1 {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.about-title1 {
-  color: #000000;
-  font-size: 35px;
-  font-weight: 500;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 100%;
-  margin-bottom: 20px;
-}
-
-.about-subtitle1 {
-  color: #000000;
-  font-size: 16px;
-  font-weight: 400;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 150%;
-}
 
 .process-card {
   display: flex;
-  gap: 60px;
+  gap: 100px;
   align-items: center;
   justify-content: space-between;
 }
@@ -205,9 +129,6 @@
   display: block;
 }
 
-.about-details1 {
-  flex: 1;
-}
 
 .process-card-title {
   color: #000000;
@@ -240,7 +161,6 @@
 /* Content Section */
 .content-1 {
   display: flex;
-  gap: 60px;
   align-items: center;
   padding: 100px 90px;
   background-color: #f4f5f7;
@@ -252,35 +172,15 @@
 .about-section3 {
   width: 100%;
   padding: 100px 90px;
-  box-sizing: border-box;
   background-color: #ffffff;
 }
 
 /* About Section 5 */
 .about-section5 {
   width: 100%;
-  padding: 100px 90px;
-  box-sizing: border-box;
+  padding: 120px 90px;
 }
 
-
-
-
-.about-video5 {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #000;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.about-video5 img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
 
 /* Certificates Section */
@@ -288,6 +188,7 @@
   padding: 120px 20px;
   background-color: #f5f5f5;
 }
+
 
 .certificates {
   display: flex;
@@ -305,21 +206,19 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-  .about-section {
-    padding: 100px 20px;
+  .about-section,
+   .about-section1, 
+   .about-section3,
+    .about-section5,
+     .certificates-section,
+     .content-1 {
+    padding: 70px 10px;
   }
 
-  .about-section1 {
-    padding: 100px 20px;
+  .about-hero-h1 {
+    font-size: 45px;
   }
 
-  .content-1 {
-    padding: 100px 20px;
-  }
-
-  .about-section3 {
-    padding: 100px 20px;
-  }
   .process-card {
     flex-direction: column;
     gap: 40px;
@@ -330,14 +229,6 @@
   }
   .process-card-details {
     width: 100%;
-  }
-
-  .about-section5 {
-    padding: 100px 20px;
-  }
-
-  .about-video5 {
-    max-width: 100%;
   }
 
   .certificates  img {
