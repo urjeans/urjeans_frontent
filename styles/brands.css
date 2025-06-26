@@ -2,7 +2,7 @@
 
 /* Hero */
 .zilver-hero {
-  padding: 50px 20px;
+  padding: 20px 20px;
 }
 
 .zilver-hero-wrapper {
@@ -18,7 +18,7 @@
 
 .image-2 img, .image-1 img {
   width: 100%;
-  height: 100%;
+  height: 90vh;
   object-fit: cover;
 }
 
@@ -33,6 +33,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 120px 0px;
 }
 
 .bento-grid {
@@ -91,7 +92,7 @@
 
 /* Category */
 .category-wrapper {
-  padding: 100px 20px
+  padding: 120px 20px
 }
 
 .category-grid {
@@ -195,17 +196,27 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+  .zilver-hero {
+    padding: 10px 10px;
+  }
   .zilver-hero-wrapper {
     grid-template-columns: repeat(1, 1fr);
-    gap: 30px;
-    padding: 10px;
+    gap: 20px;
   }
   
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
+
+  .gallery-wrapper {
+    padding: 70px 10px;
+  }
   
+  .bento-grid {
+    padding: 0px;
+  }
+
   .category-item {
     height: 300px;
   }
