@@ -214,11 +214,11 @@
         <div class="category-grid">
             <div class="category-item">
                 <div class="image-slideshow">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 1" class="slide active">
-                    <img src="../assets/brands-jeans/zilwer-jeans.png" alt="Jeans 2" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 3" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 4" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 5" class="slide">
+                    <img src="../assets/izmir/izmir-1.jpeg" alt="Jeans 1" class="slide active">
+                    <img src="../assets/izmir/izmir-2.jpeg" alt="Jeans 2" class="slide">
+                    <img src="../assets/izmir/izmir-3.jpeg" alt="Jeans 3" class="slide">
+                    <img src="../assets/izmir/izmir-4.jpeg" alt="Jeans 4" class="slide">
+                    <img src="../assets/izmir/izmir-5.jpeg" alt="Jeans 5" class="slide">
                 </div>
                 <div class="info-hover">
                     <h3 class="jeans-name">Jeans</h3>
@@ -233,11 +233,11 @@
             </div>
             <div class="category-item">
                 <div class="image-slideshow">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 1" class="slide active">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 2" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 3" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 4" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 5" class="slide">
+                    <img src="../assets/izmir/izmir-1.jpeg" alt="Jeans 1" class="slide active">
+                    <img src="../assets/izmir/izmir-2.jpeg" alt="Jeans 2" class="slide">
+                    <img src="../assets/izmir/izmir-3.jpeg" alt="Jeans 3" class="slide">
+                    <img src="../assets/izmir/izmir-4.jpeg" alt="Jeans 4" class="slide">
+                    <img src="../assets/izmir/izmir-5.jpeg" alt="Jeans 5" class="slide">
                 </div>
                 <div class="info-hover">
                     <h3 class="jeans-name">Jeans</h3>
@@ -252,11 +252,11 @@
             </div>
             <div class="category-item">
                 <div class="image-slideshow">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 1" class="slide active">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 2" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 3" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 4" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 5" class="slide">
+                    <img src="../assets/izmir/izmir-1.jpeg" alt="Jeans 1" class="slide active">
+                    <img src="../assets/izmir/izmir-2.jpeg" alt="Jeans 2" class="slide">
+                    <img src="../assets/izmir/izmir-3.jpeg" alt="Jeans 3" class="slide">
+                    <img src="../assets/izmir/izmir-4.jpeg" alt="Jeans 4" class="slide">
+                    <img src="../assets/izmir/izmir-5.jpeg" alt="Jeans 5" class="slide">
                 </div>
                 <div class="info-hover">
                     <h3 class="jeans-name">Jeans</h3>
@@ -271,11 +271,11 @@
             </div>
             <div class="category-item">
                 <div class="image-slideshow">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 1" class="slide active">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 2" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 3" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 4" class="slide">
-                    <img src="../assets/brands-jeans/izmir-jeans.png" alt="Jeans 5" class="slide">
+                    <img src="../assets/izmir/izmir-1.jpeg" alt="Jeans 1" class="slide active">
+                    <img src="../assets/izmir/izmir-2.jpeg" alt="Jeans 2" class="slide">
+                    <img src="../assets/izmir/izmir-3.jpeg" alt="Jeans 3" class="slide">
+                    <img src="../assets/izmir/izmir-4.jpeg" alt="Jeans 4" class="slide">
+                    <img src="../assets/izmir/izmir-5.jpeg" alt="Jeans 5" class="slide">
                 </div>
                 <div class="info-hover">
                     <h3 class="jeans-name">Jeans</h3>
@@ -364,40 +364,8 @@
     </footer>
     <script src="../main.js"></script>
     <script src="../lang.js"></script>
+    <script src="../categorySlider.js"></script>
     
-    <script>
-        // Automatic slideshow functionality for category items
-        document.addEventListener('DOMContentLoaded', function() {
-            const categoryItems = document.querySelectorAll('.category-item');
-            
-            categoryItems.forEach(item => {
-                const slides = item.querySelectorAll('.slide');
-                let currentSlide = 0;
-                let slideInterval;
-                
-                // Function to show next slide
-                function nextSlide() {
-                    slides[currentSlide].classList.remove('active');
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    slides[currentSlide].classList.add('active');
-                }
-                
-                // Start slideshow on hover
-                item.addEventListener('mouseenter', function() {
-                    slideInterval = setInterval(nextSlide, 800); // Change slide every 800ms
-                });
-                
-                // Stop slideshow when mouse leaves
-                item.addEventListener('mouseleave', function() {
-                    clearInterval(slideInterval);
-                    // Reset to first slide
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    slides[0].classList.add('active');
-                    currentSlide = 0;
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>
