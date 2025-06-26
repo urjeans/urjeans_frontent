@@ -299,9 +299,9 @@ function updateLanguage(lang) {
 
   document.querySelectorAll('.selected-language').forEach(selectedLanguage => {
     let flagSrc = '';
-    if (lang === 'uz') flagSrc = './assets/flags/uz.svg';
-    if (lang === 'en') flagSrc = './assets/flags/us.svg';
-    if (lang === 'ru') flagSrc = './assets/flags/ru.svg';
+    if (lang === 'uz') flagSrc = '/assets/flags/uz.svg';
+    if (lang === 'en') flagSrc = '/assets/flags/us.svg';
+    if (lang === 'ru') flagSrc = '/assets/flags/ru.svg';
     selectedLanguage.innerHTML = `<img src="${flagSrc}" alt="">${lang.toUpperCase()}`;
   });
 

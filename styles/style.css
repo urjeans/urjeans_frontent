@@ -666,7 +666,6 @@ header {
   cursor: pointer;
   z-index: 4000;
   position: fixed;
-  top: 24px;
   right: 24px;
   background: transparent;
   border-radius: 50%;
@@ -1318,7 +1317,6 @@ footer {
 
   .hamburger {
     display: flex;
-    padding-top: 3%;
   }
   /* Header */
   header {

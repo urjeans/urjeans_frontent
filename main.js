@@ -73,8 +73,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    mobileNav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
+    // Handle mobile navigation links specifically
+    const mobileNavLinks = mobileNav.querySelectorAll(".mobile-ul a");
+    console.log("Found mobile nav links:", mobileNavLinks.length);
+    
+    // Simple approach: just close menu on navigation link click
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        console.log("Mobile nav link clicked:", link.href);
+        
+        // Close the mobile menu
         hamburger.classList.remove("active");
         mobileNav.classList.remove("active");
         body.style.overflow = "";
@@ -272,12 +280,3 @@ if (upBtn) {
     });
   });
 }
-
-document.querySelectorAll("nav a").forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const page = link.getAttribute("href");
-    // Sahifa yuklash funksiyasi shu yerda bo'lishi kerak
-    loadPage(page);
-  });
-});
