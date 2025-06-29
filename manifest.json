@@ -1,0 +1,22 @@
+{
+    "name": "URJEANS",
+    "short_name": "URJEANS",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#d62828",
+    "description": "URJEANS is a jeans and trousers manufacturing company based in Uzbekistan, focused on premium denim production and global export.",
+    "icons": [
+      {
+        "src": "/assets/icon-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/assets/icon-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
+  
