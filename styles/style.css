@@ -210,14 +210,11 @@ header {
   transition: width 0.3s ease;
 }
 
-.content ul a:first-child li::after {
+/* Active state for any navigation link */
+.content ul a.active li::after {
   width: 100%;
   height: 2px;
   background-color: var(--red);
-}
-
-.content ul a:hover li::after {
-  width: 100%;
 }
 
 .content ul a:hover li::after {
