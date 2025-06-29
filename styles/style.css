@@ -100,17 +100,19 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.3s;
+  text-decoration: none;
+
 }
 
 .primary-btn .arrow {
   position: absolute;
   left: 50%;
-  bottom: -40px;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-size: 2rem;
   color: var(--white);
   opacity: 0;
-  transition: bottom 0.3s, opacity 0.3s;
+  transition: top 0.3s, opacity 0.3s;
   pointer-events: none;
 }
 
@@ -125,7 +127,7 @@
 }
 
 .primary-btn:hover .arrow {
-  bottom: 10px;
+  top: 50%;
   opacity: 1;
 }
 
@@ -594,37 +596,12 @@ header {
   font-size: 16px;
   line-height: 1.5;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-family: var(--didot-font);
   text-align: justify;
   font-style: italic;
 }
 
-.about-us-btn {
-  background-color: var(--red);
-  color: white;
-  border: none;
-  width: 200px;
-  height: 40px;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-family: var(--matn-font);
-  gap: 10px;
-  transition: all 0.3s ease;
-  letter-spacing: 0.05em;
-}
-.about-us-btn:hover {
-  background-color: #b30000;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  border-radius: 0;
-  font-family: var(--matn-font);
-  color: white;
-
-  transform: scale(1.05);
-}
 
 .about-us-img {
   position: relative;
@@ -1486,6 +1463,7 @@ footer {
     width: 100%;
     padding: 40px 10px;
     margin-left: -10%;
+    margin-top: 50px;
   }
 
   .mobile-contact {
@@ -1517,6 +1495,7 @@ footer {
     display: flex;
     gap: 20px;
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
   }
 
@@ -1524,14 +1503,19 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
     border-radius: 50%;
     transition: transform 0.3s ease;
+    color: var(--black);
   }
-
+  .icons a svg {
+    width: 40px;
+    height: 40px;
+    display: block;
+  }
   .icons a:hover {
     transform: scale(1.1);
+    color: var(--red);
+    fill: var(--red);
   }
 
   .language-options {
