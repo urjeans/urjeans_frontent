@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URJEANS Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d62828;
+            --secondary-color: #2c3e50;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, var(--secondary-color) 0%, #34495e 100%);
+            color: white;
+            padding: 0;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 30px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .sidebar-header p {
+            font-size: 14px;
+            opacity: 0.8;
+            color: #bdc3c7;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-item i {
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            color: var(--danger-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            color: #c0392b;
+        }
+
+        .logout-btn i {
+            margin-right: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .content-header {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .content-header h1 {
+            font-size: 32px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .content-header p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb i {
+            margin: 0 10px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #2980b9 100%);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .form-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .form-header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .form-body {
+            padding: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group label i {
+            margin-right: 8px;
+            color: var(--accent-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #adb5bd;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            background: var(--light-gray);
+            color: var(--text-dark);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .file-upload-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .file-upload-btn i {
+            margin-right: 8px;
+        }
+
+        .file-info {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .submit-section {
+            background: var(--light-gray);
+            padding: 25px 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--success-color) 0%, #2ecc71 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .submit-btn i {
+            margin-right: 8px;
+        }
+
+        /* Products Display */
+        .products-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .products-header {
+            background: linear-gradient(135deg, var(--warning-color) 0%, #e67e22 100%);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .products-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .products-header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            transform: translateY(0);
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            font-size: 12px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-details i {
+            margin-right: 5px;
+        }
+
+        .color-indicators {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .color-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .color-red { background-color: var(--danger-color); }
+        .color-yellow { background-color: var(--warning-color); }
+        .color-green { background-color: var(--success-color); }
+        .color-blue { background-color: var(--accent-color); }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admin-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .content-header h1 {
+                font-size: 24px;
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid var(--accent-color);
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success/Error Messages */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .alert-success {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(39, 174, 96, 0.2);
+        }
+
+        .alert-error {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--danger-color);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+        }
+
+        .alert i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-crown"></i> URJEANS</h1>
+                <p>Admin Panel</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    Bosh sahifa
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-tshirt"></i>
+                    Mahsulotlar
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-images"></i>
+                    Galereya
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Hisobotlar
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    Foydalanuvchilar
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    Sozlamalar
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="/pages/login.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Chiqish
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="content-header">
+                <div class="breadcrumb">
+                    <a href="#"><i class="fas fa-home"></i> Bosh sahifa</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Mahsulot boshqaruvi</span>
+                </div>
+                <h1>Mahsulot boshqaruvi</h1>
+                <p>Barcha brendlardagi denim mahsulotlaringizni qo'shing va boshqaring</p>
+            </div>
+
+            <!-- Alert Messages -->
+            <div id="alert-container"></div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <div class="form-header">
+                    <h3><i class="fas fa-plus-circle"></i> Yangi mahsulot qo'shish</h3>
+                    <p>Katalogingizga yangi mahsulot qo'shish uchun quyidagi ma'lumotlarni to'ldiring</p>
+                </div>
+
+                <form id="productForm">
+                    <div class="form-body">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="productName">
+                                    <i class="fas fa-tag"></i>
+                                    Mahsulot nomi
+                                </label>
+                                <input type="text" id="productName" placeholder="Mahsulot nomini kiriting" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="style">
+                                    <i class="fas fa-palette"></i>
+                                    Dizayn
+                                </label>
+                                <input type="text" id="style" placeholder="Dizayn turini kiriting (masalan: To'g'ri, Tor, Keng)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="color">
+                                    <i class="fas fa-fill-drip"></i>
+                                    Rang
+                                </label>
+                                <input type="text" id="color" placeholder="Rang nomini kiriting">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fabric">
+                                    <i class="fas fa-scroll"></i>
+                                    Material
+                                </label>
+                                <input type="text" id="fabric" placeholder="Material tarkibini kiriting">
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="sizes">
+                                    <i class="fas fa-ruler"></i>
+                                    Mavjud o'lchamlar
+                                </label>
+                                <input type="text" id="sizes" placeholder="masalan: 28, 30, 32, 34, 36">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="category">
+                                    <i class="fas fa-layer-group"></i>
+                                    Brend kategoriyasi
+                                </label>
+                                <select id="category" required>
+                                    <option value="">Brendni tanlang</option>
+                                    <option value="izmir">Izmir</option>
+                                    <option value="powerful">Powerful</option>
+                                    <option value="zilwer">Zilwer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">
+                                <i class="fas fa-align-left"></i>
+                                Tavsif
+                            </label>
+                            <textarea id="description" rows="4" placeholder="Mahsulot tavsifini kiriting..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="images">
+                                <i class="fas fa-images"></i>
+                                Mahsulot rasmlari
+                            </label>
+                            <div class="file-upload">
+                                <input type="file" id="images" multiple accept="image/*">
+                                <span class="file-upload-btn">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    Rasmlarni tanlang
+                                </span>
+                                <div class="file-info">Hech qanday fayl tanlanmagan</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="submit-section">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-save"></i>
+                            Mahsulot qo'shish
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Products Display -->
+            <div class="products-section">
+                <div class="products-header">
+                    <h3><i class="fas fa-th-large"></i> Mavjud mahsulotlar</h3>
+                    <p>Mavjud mahsulot katalogingizni boshqaring</p>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Izmir Classic">
+                            <div class="product-overlay">
+                                <div class="product-title">Izmir Classic</div>
+                                <div class="product-subtitle">To'g'ri kesimli denim</div>
+                                <div class="product-details">
+                                    <i class="fas fa-scroll"></i>
+                                    100% Paxta
+                                </div>
+                                <div class="color-indicators">
+                                    <div class="color-dot color-blue"></div>
+                                    <div class="color-dot color-red"></div>
+                                    <div class="color-dot color-green"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Powerful Street">
+                            <div class="product-overlay">
+                                <div class="product-title">Powerful Street</div>
+                                <div class="product-subtitle">Zamonaviy kesimli kolleksiya</div>
+                                <div class="product-details">
+                                    <i class="fas fa-scroll"></i>
+                                    95% Paxta, 5% Elastan
+                                </div>
+                                <div class="color-indicators">
+                                    <div class="color-dot color-red"></div>
+                                    <div class="color-dot color-yellow"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Zilwer Premium">
+                            <div class="product-overlay">
+                                <div class="product-title">Zilwer Premium</div>
+                                <div class="product-subtitle">Klassik to'g'ri kesim</div>
+                                <div class="product-details">
+                                    <i class="fas fa-scroll"></i>
+                                    100% Premium paxta
+                                </div>
+                                <div class="color-indicators">
+                                    <div class="color-dot color-green"></div>
+                                    <div class="color-dot color-blue"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload handling
+        document.getElementById('images').addEventListener('change', function(e) {
+            const fileInfo = document.querySelector('.file-info');
+            const files = e.target.files;
+            
+            if (files.length > 0) {
+                fileInfo.textContent = `${files.length} ta fayl tanlandi`;
+                fileInfo.style.color = '#27ae60';
+            } else {
+                fileInfo.textContent = 'Hech qanday fayl tanlanmagan';
+                fileInfo.style.color = '#6c757d';
+            }
+        });
+
+        // Form submission
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mahsulot qo\'shilmoqda...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                showAlert('Mahsulot muvaffaqiyatli qo\'shildi!', 'success');
+                document.getElementById('productForm').reset();
+                document.querySelector('.file-info').textContent = 'Hech qanday fayl tanlanmagan';
+                document.querySelector('.file-info').style.color = '#6c757d';
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Alert function
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alert-container');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            alertContainer.appendChild(alert);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // Navigation active state
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Responsive sidebar toggle (for mobile)
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('collapsed');
+        }
+    </script>
+</body>
+
+</html>
