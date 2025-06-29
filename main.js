@@ -223,6 +223,37 @@ function showSlide(index) {
   indicators.forEach((indicator, i) => {
     indicator.classList.toggle("active", i === index);
   });
+  
+  // Reset and trigger animations for the active slide
+  const activeSlide = slides[index];
+  if (activeSlide) {
+    const textLines = activeSlide.querySelectorAll('.text-line');
+    const animatedBtn = activeSlide.querySelector('.animated-btn');
+    
+    // Reset animations
+    textLines.forEach(line => {
+      line.style.animation = 'none';
+      line.offsetHeight; // Trigger reflow
+      line.style.animation = null;
+    });
+    
+    if (animatedBtn) {
+      animatedBtn.style.animation = 'none';
+      animatedBtn.offsetHeight; // Trigger reflow
+      animatedBtn.style.animation = null;
+    }
+    
+    // Trigger animations with slight delay
+    setTimeout(() => {
+      textLines.forEach((line, i) => {
+        line.style.animation = `textSlideUp 0.8s ease-out ${0.3 + (i * 0.3)}s forwards`;
+      });
+      
+      if (animatedBtn) {
+        animatedBtn.style.animation = `btnFadeIn 0.8s ease-out 0.9s forwards`;
+      }
+    }, 100);
+  }
 }
 
 function nextSlide() {

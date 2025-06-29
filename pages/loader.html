@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UR Loader</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    .asosiy-konteyner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ur-matn {
+      font-size: 120px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 20px;
+      margin-bottom: 40px;
+      position: relative;
+      opacity: 0;
+      animation: paydo-bolish 2s ease-out forwards;
+    }
+
+    .progress-chiziq {
+      width: 300px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .progress-toldirish {
+      height: 100%;
+      background: linear-gradient(90deg, #00d4ff, #0099cc, #00d4ff);
+      background-size: 200% 100%;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.3s ease;
+      animation: rang-harakati 2s linear infinite;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+
+    .yuklash-nuqtalar {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .nuqta {
+      width: 12px;
+      height: 12px;
+      background: #00d4ff;
+      border-radius: 50%;
+      animation: sakrash 1.5s infinite;
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+    }
+
+    .nuqta:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .nuqta:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .nuqta:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .orqa-zarralar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
+
+    .zarra:nth-child(odd) {
+      animation-duration: 8s;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .tugallash-xabar {
+      color: #00d4ff;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 25px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+      letter-spacing: 2px;
+    }
+
+    .tugallash-xabar.korsatish {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes paydo-bolish {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes yaltiratish {
+
+      0%,
+      100% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes rang-harakati {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    @keyframes sakrash {
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+
+      40% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @keyframes suzish {
+      0% {
+        transform: translateY(100vh) translateX(0px);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes zarba {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <div class="orqa-zarralar">
+      <div class="zarra" style="left: 10%; animation-delay: 0s;"></div>
+      <div class="zarra" style="left: 20%; animation-delay: 1s;"></div>
+      <div class="zarra" style="left: 30%; animation-delay: 2s;"></div>
+      <div class="zarra" style="left: 40%; animation-delay: 3s;"></div>
+      <div class="zarra" style="left: 50%; animation-delay: 4s;"></div>
+      <div class="zarra" style="left: 60%; animation-delay: 5s;"></div>
+      <div class="zarra" style="left: 70%; animation-delay: 6s;"></div>
+      <div class="zarra" style="left: 80%; animation-delay: 7s;"></div>
+      <div class="zarra" style="left: 90%; animation-delay: 8s;"></div>
+    </div>
+  
+    <div class="yoruglik-effekt"></div>
+  
+    <div class="asosiy-konteyner">
+      <div class="ur-matn">UR</div>
+      <div class="progress-chiziq">
+        <div class="progress-toldirish"></div>
+      </div>
+      <div class="yuklash-nuqtalar">
+        <div class="nuqta"></div>
+        <div class="nuqta"></div>
+        <div class="nuqta"></div>
+      </div>
+      <div class="tugallash-xabar">Welcome to URJEANS</div>
+    </div>
+  
+    <script>
+      let progress = 0;
+      const progressToldirish = document.querySelector('.progress-toldirish');
+      const tugallashXabar = document.querySelector('.tugallash-xabar');
+      const nuqtalar = document.querySelector('.yuklash-nuqtalar');
+      const urMatn = document.querySelector('.ur-matn');
+  
+      const umumiyVaqt = 3500;
+      const yangilanishVaqti = 50;
+      const qadamQiymati = 100 / (umumiyVaqt / yangilanishVaqti);
+  
+      const yuklashJarayoni = setInterval(() => {
+        progress += qadamQiymati + (Math.random() * 0.5 - 0.25);
+  
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(yuklashJarayoni);
+  
+          progressToldirish.style.width = '100%';
+  
+          setTimeout(() => {
+            nuqtalar.style.opacity = '0';
+  
+            setTimeout(() => {
+              tugallashXabar.classList.add('korsatish');
+              urMatn.style.transform = 'scale(1.1)';
+  
+              setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = '0';
+  
+                setTimeout(() => {
+                  console.log('Yuklash tugallandi - Asosiy kontentni ko\'rsatishga tayyor');
+                }, 1000);
+              }, 1500);
+            }, 300);
+          }, 200);
+        } else {
+          progressToldirish.style.width = progress + '%';
+        }
+      }, yangilanishVaqti);
+    </script>
+  </body>
+  
+  </html>

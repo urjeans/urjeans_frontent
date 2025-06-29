@@ -125,8 +125,9 @@
 
 .process-card-img img {
   width: 100%;
-  height: auto;
+  max-height: 450px;
   display: block;
+  object-fit: cover;
 }
 
 
@@ -135,7 +136,7 @@
   font-size: 35px;
   font-weight: 500;
   font-family: Helvetica, sans-serif;
-  line-height: 100%;
+  line-height: 1.5;
   margin-bottom: 20px;
 }
 
