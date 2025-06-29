@@ -1031,6 +1031,15 @@ header {
   background: url("../assets/other-photos/aboutus.png") center center / cover no-repeat;
 }
 
+.overlay-showromm {
+  background: url("../assets/other-photos/showroom.png") center center / cover no-repeat;
+}
+
+.overlay-factory {
+  background: url("../assets/other-photos/factory.png") center center / cover no-repeat;
+}
+
+
 .watch-button {
   background-color: #e50914;
   color: white;
@@ -1197,10 +1206,12 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.5);
   line-height: 1.5;
 }
 
-.wrapper-box p {
+.wrapper-box a, .wrapper-box p {
   font-size: 15px;
   text-align: center;
   line-height: 1.5;
+  text-decoration: none;
+  color: var(--white);
 }
 
 .contact-right {
