@@ -75,12 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle mobile navigation links specifically
     const mobileNavLinks = mobileNav.querySelectorAll(".mobile-ul a");
-    console.log("Found mobile nav links:", mobileNavLinks.length);
     
     // Simple approach: just close menu on navigation link click
     mobileNavLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
-        console.log("Mobile nav link clicked:", link.href);
         
         // Close the mobile menu
         hamburger.classList.remove("active");
