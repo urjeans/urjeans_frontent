@@ -359,7 +359,7 @@
             clearErrors();
             
             try {
-                const response = await fetch('https://urjeans.uz/backend/api/auth/login', {
+                const response = await fetch('https://api.urjeans.uz/api/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -383,7 +383,7 @@
                     
                     // Redirect after a short delay
                     setTimeout(() => {
-                        window.location.href = 'admin.html';
+                        window.location.href = '/pages/admin.html';
                     }, 1000);
                     
                 } else {
