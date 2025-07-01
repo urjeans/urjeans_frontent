@@ -602,7 +602,7 @@
             </nav>
 
             <div class="sidebar-footer">
-                <a href="/pages/login.html" class="logout-btn">
+                <a href="#" class="logout-btn" id="logoutBtn">
                     <i class="fas fa-sign-out-alt"></i>
                     Chiqish
                 </a>
@@ -897,7 +897,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        // 'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
                     },
                     mode: 'cors',
                     credentials: 'include'
@@ -967,7 +967,6 @@
             
             // Parse colors for color indicators
             const colorArray = product.colors ? product.colors.split(',').map(color => color.trim()) : [];
-            console.log(imageUrl)
             
             // Color mapping
             const colorMap = {
@@ -1003,6 +1002,16 @@
         
         // Load products when page loads
         document.addEventListener('DOMContentLoaded', loadProducts);
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminToken');
+            showAlert('Avtorizatsiya muddati tugagan. Iltimos, qaytadan tizimga kiring.', 'error');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        });
     </script>
 </body>
 
