@@ -841,8 +841,8 @@ header {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-.brand-card > img {
-  width: 57%;
+.brand-img {
+  width: 60%;
   display: block;
 }
 
@@ -925,6 +925,8 @@ header {
   object-position: bottom;
 }
 
+/* GROUP */
+
 .parent {
   display: grid;
   grid-template-columns: 301px 201px 202px 203px 300px;
@@ -967,6 +969,70 @@ header {
   grid-area: 3 / 3 / 5 / 6;
 }
 
+
+/* GALLERY */
+.gallery-container {
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+
+.gallery-wrapper {
+  display: flex;
+  flex: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.card {
+  flex: 1 1 1%;
+  position: relative;
+  opacity: 0.2;
+  transition: flex 600ms cubic-bezier(0.25, 1, 0.5, 1), opacity 250ms ease;
+}
+.card:hover {
+  flex-basis: 30%;
+}
+.card__inner {
+  margin: 0.25rem;
+  background: #fff;
+  border-radius: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.card picture {
+  width: 100%;
+  height: 0;
+  padding-bottom: 600px;
+  overflow: hidden;
+  position: relative;
+}
+.card picture img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.card.is-active, .card:hover {
+  opacity: 1;
+}
+.card:nth-child(2), .card:nth-child(5), .card:nth-child(9) {
+  margin-top: 0;
+}
+.card:nth-child(2), .card:nth-child(4), .card:nth-child(6), .card:nth-child(8), .card:nth-child(10) {
+  margin-top: 2.5%;
+}
+.card:nth-child(3), .card:nth-child(7) {
+  margin-top: 5%;
+}
+
 /* YOUTUBE */
 
 .video-wrapper {
@@ -976,6 +1042,7 @@ header {
   padding: 0px 20px;
   border: 10px var(--primary) solid;
   border-radius: 10px;
+  margin: 120px auto
 }
 
 .second-video {
@@ -984,8 +1051,7 @@ header {
 
 #player {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -993,8 +1059,7 @@ header {
 
 .preview-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   background: url("../assets/other-photos/youtube-thumball.JPG") center center / cover no-repeat;
@@ -1002,6 +1067,7 @@ header {
   align-items: center;
   justify-content: center;
   z-index: 2;
+  border-radius: 8px;
 }
 
 .overlay-index {
@@ -1655,16 +1721,27 @@ footer {
     width: 100%;
     height: auto;
     gap: 3rem;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
   }
 
-  .brand-card img {
-    width: 75%;
+  .brand-logo {
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .brand-img { 
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
   }
 
   .brand-card p {
     font-size: 18px;
-    width: 60%;
+    line-height: 1.2;
+    width: 90%;
   }
 
   .brand-card-2 {
@@ -1682,9 +1759,10 @@ footer {
 
   /* Youtube */
   .video-wrapper {
-    padding: 70px 10px;
+    margin: 70px auto;
+    width: 97%;
   }
-  .player {
+  #player {
     width: 100%;
     height: 100%;
   }
@@ -1698,7 +1776,7 @@ footer {
     scroll-snap-type: x mandatory;
     gap: 1rem;
     height: 350px;
-    width: 90%;
+    width: 97%;
     padding-bottom: 1rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
