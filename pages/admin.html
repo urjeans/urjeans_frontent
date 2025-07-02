@@ -437,6 +437,126 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
+        /* Delete button styles */
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: scale(0.8);
+            z-index: 10000;
+        }
+
+        .product-card:hover .delete-btn {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .delete-btn:hover {
+            background: var(--danger-color);
+            transform: scale(1.1);
+        }
+
+        .delete-btn i {
+            font-size: 14px;
+        }
+
+        /* Confirmation modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .modal-message {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .modal-btn-cancel {
+            background: var(--light-gray);
+            color: var(--text-dark);
+        }
+
+        .modal-btn-cancel:hover {
+            background: #e9ecef;
+        }
+
+        .modal-btn-delete {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .modal-btn-delete:hover {
+            background: #c0392b;
+        }
+
         .color-red { background-color: var(--danger-color); }
         .color-yellow { background-color: var(--warning-color); }
         .color-green { background-color: var(--success-color); }
@@ -640,56 +760,58 @@
                                     <i class="fas fa-tag"></i>
                                     Mahsulot nomi
                                 </label>
-                                <input type="text" id="productName" placeholder="Mahsulot nomini kiriting" required>
+                                <input type="text" id="productName" placeholder="Mahsulot nomini kiriting (masalan: Classic Blue Jeans)" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="style">
                                     <i class="fas fa-palette"></i>
-                                    Dizayn
+                                    Dizayn turi
                                 </label>
-                                <input type="text" id="style" placeholder="Dizayn turini kiriting (masalan: To'g'ri, Tor, Keng)">
+                                <input type="text" id="style" placeholder="Dizayn turini kiriting (masalan: Straight Fit, Slim Fit, Wide Leg)" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="brandName">
+                                    <i class="fas fa-crown"></i>
+                                    Brend nomi
+                                </label>
+                                <select id="brandName" required>
+                                    <option value="">Brendni tanlang</option>
+                                    <option value="Izmir">Izmir</option>
+                                    <option value="Powerful">Powerful</option>
+                                    <option value="Zilwer">Zilwer</option>
+                                </select>
                             </div>
                             
                             <div class="form-group">
                                 <label for="color">
                                     <i class="fas fa-fill-drip"></i>
-                                    Rang
+                                    Ranglar
                                 </label>
-                                <input type="text" id="color" placeholder="Rang nomini kiriting">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="fabric">
-                                    <i class="fas fa-scroll"></i>
-                                    Material
-                                </label>
-                                <input type="text" id="fabric" placeholder="Material tarkibini kiriting">
+                                <input type="text" id="color" placeholder="Ranglarni vergul bilan ajrating (masalan: Blue, Black, White)">
                             </div>
                         </div>
 
                         <div class="form-grid">
                             <div class="form-group">
+                                <label for="fabric">
+                                    <i class="fas fa-scroll"></i>
+                                    Material
+                                </label>
+                                <input type="text" id="fabric" placeholder="Material tarkibini kiriting (masalan: 98% Cotton, 2% Elastane)">
+                            </div>
+                            
+                            <div class="form-group">
                                 <label for="sizes">
                                     <i class="fas fa-ruler"></i>
                                     Mavjud o'lchamlar
                                 </label>
-                                <input type="text" id="sizes" placeholder="masalan: 28, 30, 32, 34, 36">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="category">
-                                    <i class="fas fa-layer-group"></i>
-                                    Brend kategoriyasi
-                                </label>
-                                <select id="category" required>
-                                    <option value="">Brendni tanlang</option>
-                                    <option value="izmir">Izmir</option>
-                                    <option value="powerful">Powerful</option>
-                                    <option value="zilwer">Zilwer</option>
-                                </select>
+                                <input type="text" id="sizes" placeholder="O'lchamlarni vergul bilan ajrating (masalan: 28, 30, 32, 34)">
                             </div>
                         </div>
+
+
 
                         <div class="form-group">
                             <label for="description">
@@ -742,6 +864,27 @@
         </div>
     </div>
 
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-content">
+            <div class="modal-title">
+                <i class="fas fa-exclamation-triangle" style="color: var(--danger-color); margin-right: 8px;"></i>
+                Mahsulotni o'chirish
+            </div>
+            <div class="modal-message" id="deleteModalMessage">
+                Bu mahsulotni o'chirishni xohlaysizmi? Bu amalni qaytarib bo'lmaydi.
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" id="cancelDelete">
+                    <i class="fas fa-times"></i> Bekor qilish
+                </button>
+                <button class="modal-btn modal-btn-delete" id="confirmDelete">
+                    <i class="fas fa-trash"></i> O'chirish
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // File upload handling
         document.getElementById('images').addEventListener('change', function(e) {
@@ -774,7 +917,9 @@
                 const formData = new FormData();
                 
                 // Add text fields
-                formData.append('brand_name', document.getElementById('productName').value);
+                formData.append('product_name', document.getElementById('productName').value);
+                formData.append('style', document.getElementById('style').value);
+                formData.append('brand_name', document.getElementById('brandName').value);
                 formData.append('colors', document.getElementById('color').value);
                 formData.append('fabric', document.getElementById('fabric').value);
                 formData.append('sizes', document.getElementById('sizes').value);
@@ -813,6 +958,11 @@
                 
                 const result = await response.json();
                 
+                // Add new product to global array
+                if (result && result.id) {
+                    allProducts.push(result);
+                }
+                
                 // Show success message
                 showAlert('Mahsulot muvaffaqiyatli qo\'shildi!', 'success');
                 
@@ -821,8 +971,8 @@
                 document.querySelector('.file-info').textContent = 'Hech qanday fayl tanlanmagan';
                 document.querySelector('.file-info').style.color = '#6c757d';
                 
-                // Optionally refresh the products list
-                // loadProducts(); // Uncomment if you want to refresh the products display
+                // Refresh the products list to show the new product
+                renderProducts();
                 
             } catch (error) {
                 console.error('Error adding product:', error);
@@ -880,11 +1030,13 @@
             return true;
         }
 
-        // Load and display products from API
+        // Global variable to store products
+        let allProducts = [];
+
+        // Load products from API
         async function loadProducts() {
             if (!checkAuth()) return;
             
-            const productsGrid = document.getElementById('productsGrid');
             const loadingSpinner = document.getElementById('productsLoadingSpinner');
             
             try {
@@ -915,29 +1067,18 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                const products = await response.json();
+                allProducts = await response.json();
                 
                 // Hide loading spinner
                 loadingSpinner.style.display = 'none';
                 
-                // Check if products exist
-                if (!products || products.length === 0) {
-                    productsGrid.innerHTML = '<div class="no-products"><p>Hozircha mahsulotlar mavjud emas.</p></div>';
-                    return;
-                }
-                
-                // Clear loading spinner and render products
-                productsGrid.innerHTML = '';
-                
-                // Render each product
-                products.forEach(product => {
-                    const productElement = createProductCard(product);
-                    productsGrid.appendChild(productElement);
-                });
+                // Render products
+                renderProducts();
                 
             } catch (error) {
                 console.error('Error loading products:', error);
                 loadingSpinner.style.display = 'none';
+                const productsGrid = document.getElementById('productsGrid');
                 productsGrid.innerHTML = `
                     <div class="error-message">
                         <p>Mahsulotlarni yuklashda xatolik yuz berdi.</p>
@@ -945,6 +1086,26 @@
                     </div>
                 `;
             }
+        }
+
+        // Render products to the grid
+        function renderProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            
+            // Check if products exist
+            if (!allProducts || allProducts.length === 0) {
+                productsGrid.innerHTML = '<div class="no-products"><p>Hozircha mahsulotlar mavjud emas.</p></div>';
+                return;
+            }
+            
+            // Clear grid and render products
+            productsGrid.innerHTML = '';
+            
+            // Render each product
+            allProducts.forEach(product => {
+                const productElement = createProductCard(product);
+                productsGrid.appendChild(productElement);
+            });
         }
         
         // Create product card element
@@ -981,14 +1142,21 @@
             };
             
             productDiv.innerHTML = `
+                <button class="delete-btn" data-product-id="${product.id}" data-product-name="${product.product_name || product.brand_name}">
+                    <i class="fas fa-trash"></i>
+                </button>
                 <div class="product-image">
-                    <img src="https://api.urjeans.uz${imageUrl}" alt="${product.brand_name}">
+                    <img src="https://api.urjeans.uz${imageUrl}" alt="${product.product_name || product.brand_name}">
                     <div class="product-overlay">
-                        <div class="product-title">${product.brand_name}</div>
-                        <div class="product-subtitle">${product.description || 'Mahsulot tavsifi'}</div>
+                        <div class="product-title">${product.product_name || product.brand_name}</div>
+                        <div class="product-subtitle">${product.brand_name} - ${product.style || 'Dizayn ma\'lumoti yo\'q'}</div>
                         <div class="product-details">
                             <i class="fas fa-scroll"></i>
                             ${product.fabric || 'Material ma\'lumoti yo\'q'}
+                        </div>
+                        <div class="product-details">
+                            <i class="fas fa-ruler"></i>
+                            O'lchamlar: ${product.sizes || 'Ma\'lumot yo\'q'}
                         </div>
                         <div class="color-indicators">
                             ${colorArray.map(color => `<div class="color-dot ${colorMap[color] || 'color-blue'}"></div>`).join('')}
@@ -1002,6 +1170,106 @@
         
         // Load products when page loads
         document.addEventListener('DOMContentLoaded', loadProducts);
+
+        // Delete functionality
+        let productToDelete = null;
+
+        // Handle delete button clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.delete-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const deleteBtn = e.target.closest('.delete-btn');
+                const productId = deleteBtn.getAttribute('data-product-id');
+                const productName = deleteBtn.getAttribute('data-product-name');
+                
+                productToDelete = { id: productId, name: productName };
+                showDeleteModal(productName);
+            }
+        });
+
+        // Show delete confirmation modal
+        function showDeleteModal(productName) {
+            const modal = document.getElementById('deleteModal');
+            const message = document.getElementById('deleteModalMessage');
+            
+            message.textContent = `"${productName}" mahsulotini o'chirishni xohlaysizmi? Bu amalni qaytarib bo'lmaydi.`;
+            modal.classList.add('show');
+        }
+
+        // Hide delete modal
+        function hideDeleteModal() {
+            const modal = document.getElementById('deleteModal');
+            modal.classList.remove('show');
+            productToDelete = null;
+        }
+
+        // Handle modal button clicks
+        document.getElementById('cancelDelete').addEventListener('click', hideDeleteModal);
+        document.getElementById('confirmDelete').addEventListener('click', deleteProduct);
+
+        // Close modal when clicking outside
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideDeleteModal();
+            }
+        });
+
+        // Delete product function
+        async function deleteProduct() {
+            if (!productToDelete || !checkAuth()) {
+                hideDeleteModal();
+                return;
+            }
+
+            const confirmBtn = document.getElementById('confirmDelete');
+            const originalText = confirmBtn.innerHTML;
+            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> O\'chirilmoqda...';
+            confirmBtn.disabled = true;
+
+            try {
+                const response = await fetch(`https://api.urjeans.uz/api/products/${productToDelete.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        showAlert('Avtorizatsiya muddati tugagan. Iltimos, qaytadan tizimga kiring.', 'error');
+                        localStorage.removeItem('adminToken');
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 2000);
+                        return;
+                    }
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Remove product from global array
+                allProducts = allProducts.filter(product => product.id != productToDelete.id);
+                
+                // Show success message
+                showAlert(`"${productToDelete.name}" muvaffaqiyatli o'chirildi!`, 'success');
+                
+                // Hide modal
+                hideDeleteModal();
+                
+                // Refresh products list
+                renderProducts();
+
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                showAlert(`Mahsulotni o'chirishda xatolik yuz berdi: ${error.message}`, 'error');
+            } finally {
+                // Reset button
+                confirmBtn.innerHTML = originalText;
+                confirmBtn.disabled = false;
+            }
+        }
 
         // Logout functionality
         document.getElementById('logoutBtn').addEventListener('click', function(e) {
