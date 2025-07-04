@@ -139,7 +139,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
   z-index: 3000;
 }
 
@@ -333,7 +337,7 @@ header {
 
 /* Hero Section */
 .hero {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1571,7 +1575,6 @@ footer {
   /* Hero section mobile */
   .hero {
     background-color: #00000066;
-    height: 90vh;
   }
 
   .carousel-slide:nth-child(1) {
