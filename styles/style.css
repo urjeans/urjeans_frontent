@@ -853,7 +853,6 @@ header {
 
 .brand-card-2 {
   background: #f4f5f7;
-  flex-direction: column-reverse;
 }
 
 .brand-card span {
@@ -1219,23 +1218,21 @@ box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 
 .contact-left {
   background-color: var(--black);
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 30px 20px;
   width: 50%;
   height: 32rem;
-  gap: 2rem;
+  gap: 10px;
 }
 
 .wrapper-box {
-  width: 13.5rem;
-  height: 13rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
+  gap: 10px;
 }
 
 .wrapper-box h3 {
@@ -1333,6 +1330,10 @@ footer {
   gap: 10px;
 }
 
+.footer-top ul a {
+  line-height: 1.5;
+}
+
 .footer-top .media svg {
   width: 2rem;
   fill: var(--white);
@@ -1345,7 +1346,7 @@ footer {
 .media {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
   margin-top: 3.6rem;
 }
 
@@ -1354,26 +1355,6 @@ footer {
   transition: all 0.4s;
 }
 
-.footer-bottom {
-  margin-top: 1rem;
-}
-
-.footer-bottom span {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 0.3rem;
-}
-
-.footer-bottom span a {
-  color: gray;
-  font-size: 14px;
-  font-family: var(--matn-font);
-}
-
-.footer-bottom span a:hover {
-  opacity: 0.5;
-}
 
 .up {
   width: 40px;
@@ -1843,10 +1824,9 @@ footer {
   .contact-left {
     width: 100%;
     height: auto;
-    justify-content: center;
-    gap: 20px;
-    flex-direction: column;
-    text-align: center;
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 30px;
   }
 
   .wrapper-box {

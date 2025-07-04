@@ -76,12 +76,12 @@
 }
 
 
-.card {
+.about-card {
   flex: 1;
   min-width: 300px;
 }
 
-.card p {
+.about-card p {
   color: #000000;
   font-size: 16px;
   font-weight: 400;
