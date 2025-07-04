@@ -364,23 +364,33 @@ if (upBtn) {
 }
 
 
-const cards = document.querySelectorAll(".card");
+// Gallery card functionality - moved inside DOM ready check
+function initializeGalleryCards() {
+  const cards = document.querySelectorAll(".card");
 
-// Add "is-active" class to all cards initially
-cards.forEach(card => card.classList.add("is-active"));
+  // Add "is-active" class to all cards initially
+  cards.forEach(card => card.classList.add("is-active"));
 
-// Use event delegation for better performance
-document.addEventListener("mouseenter", event => {
-  const card = event.target.closest(".card");
-  if (card) {
-    cards.forEach(c => c.classList.remove("is-active"));
-    card.classList.add("is-active");
-  }
-}, true);
+  // Use event delegation for better performance
+  document.addEventListener("mouseenter", event => {
+    const card = event.target.closest(".card");
+    if (card) {
+      cards.forEach(c => c.classList.remove("is-active"));
+      card.classList.add("is-active");
+    }
+  }, true);
 
-document.addEventListener("mouseleave", event => {
-  const card = event.target.closest(".card");
-  if (card) {
-    cards.forEach(c => c.classList.add("is-active"));
-  }
-}, true);
+  document.addEventListener("mouseleave", event => {
+    const card = event.target.closest(".card");
+    if (card) {
+      cards.forEach(c => c.classList.add("is-active"));
+    }
+  }, true);
+}
+
+// Initialize gallery cards when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeGalleryCards);
+} else {
+  initializeGalleryCards();
+}

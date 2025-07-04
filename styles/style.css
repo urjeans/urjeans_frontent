@@ -987,6 +987,8 @@ header {
   overflow: auto;
   align-items: flex-start;
   justify-content: center;
+  /* Ensure proper flex behavior in production */
+  min-height: 0;
 }
 
 .card {
@@ -994,6 +996,8 @@ header {
   position: relative;
   opacity: 0.2;
   transition: flex 600ms cubic-bezier(0.25, 1, 0.5, 1), opacity 250ms ease;
+  /* Ensure proper flex behavior in production */
+  min-width: 0;
 }
 .card:hover {
   flex-basis: 30%;
@@ -1808,6 +1812,21 @@ footer {
   .commitment-box > svg {
     width: 40%;
     max-width: 9rem;
+  }
+
+  /* Gallery mobile responsive fix */
+  .gallery-wrapper {
+    display: none;
+  }
+
+  .card {
+    flex: 1 1 auto;
+    opacity: 1;
+    margin-top: 0 !important;
+  }
+
+  .card:hover {
+    flex-basis: auto;
   }
 
 
