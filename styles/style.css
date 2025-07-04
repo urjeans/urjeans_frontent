@@ -1052,7 +1052,7 @@ header {
   margin-top: 100px;
 }
 
-#player {
+#player-index, #player-about1, #player-about2 {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1746,7 +1746,7 @@ footer {
     margin: 70px auto;
     width: 97%;
   }
-  #player {
+  #player-index, #player-about1, #player-about2 {
     width: 100%;
     height: 100%;
   }

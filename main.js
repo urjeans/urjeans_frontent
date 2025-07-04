@@ -268,34 +268,87 @@ indicators.forEach((indicator, index) => {
   });
 });
 
-let playerReady = false;
-let player;
+// Store player instances by key
+const players = {};
+const playerReady = {};
+
+// Fallback for YouTube API loading
+if (typeof YT === 'undefined') {
+  console.log("YouTube API not loaded, waiting for it...");
+  window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+}
+
+// Video configuration for each section
+const videoConfig = {
+  index: { 
+    playerId: "player-index", 
+    previewId: "preview-index", 
+    videoId: "xB3SJ46MukE" 
+  },
+  about1: { 
+    playerId: "player-about1", 
+    previewId: "preview-about1", 
+    videoId: "rsm5IFJYoZY"
+  },
+  about2: { 
+    playerId: "player-about2", 
+    previewId: "preview-about2", 
+    videoId: "uEwHLFypNhw"
+  }
+};
 
 function onYouTubeIframeAPIReady() {
-  player = new YT.Player("player", {
-    videoId: "fa8k8IQ1_X0",
-    playerVars: {
-      autoplay: 0,
-      controls: 0,
-      rel: 0,
-      modestbranding: 1,
-      fs: 0,
-      showinfo: 0,
-    },
-    events: {
-      onReady: () => {
-        playerReady = true;
-      },
-    },
+  console.log("YouTube API ready, initializing players...");
+  
+  // Create players for each configured section
+  Object.keys(videoConfig).forEach(key => {
+    const cfg = videoConfig[key];
+    
+    // Only create player if the element exists on the page
+    if (document.getElementById(cfg.playerId)) {
+      console.log(`Creating player for ${key}: ${cfg.playerId}`);
+      players[key] = new YT.Player(cfg.playerId, {
+        videoId: cfg.videoId,
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          rel: 0,
+          modestbranding: 1,
+          fs: 0,
+          showinfo: 0,
+        },
+        events: {
+          onReady: () => {
+            console.log(`Player ${key} ready`);
+            playerReady[key] = true;
+          },
+          onError: (event) => {
+            console.error(`Player ${key} error:`, event.data);
+          }
+        },
+      });
+    } else {
+      console.log(`Player element not found: ${cfg.playerId}`);
+    }
   });
 }
 
-function startVideo() {
-  if (playerReady) {
-    document.getElementById("preview").style.display = "none";
-    player.playVideo();
+function startVideo(key) {
+  const cfg = videoConfig[key];
+  if (playerReady[key] && players[key]) {
+    document.getElementById(cfg.previewId).style.display = "none";
+    players[key].playVideo();
   } else {
-    alert("Video hali yuklanmadi. Iltimos, kuting.");
+    // Show a more user-friendly message and retry after a short delay
+    console.log("Video not ready yet, retrying in 1 second...");
+    setTimeout(() => {
+      if (playerReady[key] && players[key]) {
+        document.getElementById(cfg.previewId).style.display = "none";
+        players[key].playVideo();
+      } else {
+        alert("Video hali yuklanmadi. Iltimos, sahifani yangilang va qayta urinib ko'ring.");
+      }
+    }, 1000);
   }
 }
 
