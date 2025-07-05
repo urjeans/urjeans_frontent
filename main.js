@@ -354,6 +354,21 @@ function startVideo(key) {
 
 const upBtn = document.getElementById("up");
 
+// Function to handle scroll and show/hide up button
+function handleScroll() {
+  if (upBtn) {
+    // Show button after scrolling 300px
+    if (window.scrollY > 300) {
+      upBtn.classList.add('show');
+    } else {
+      upBtn.classList.remove('show');
+    }
+  }
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', handleScroll);
+
 if (upBtn) {
   upBtn.addEventListener("click", function () {
     window.scrollTo({
