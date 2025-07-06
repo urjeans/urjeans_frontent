@@ -102,6 +102,9 @@ const translations = {
     gallery_description: "O'ziga xos jinsi brendlar to'plamimizni ko'rish, bizning denim ishlab chiqarish ishlarimizni ko'rsatadi. Klassikdan tortib zamonaviy uslublargacha – har bir mahsulot bizning jinsi modasiga bo'lgan ishtiyoqimizni aks ettiradi.",
     category: "Kategoriya",
     category_description: "Bizning har biri aniqlik va uslub bilan yaratilgan jinsi shimlar kolleksiyamiz bilan tanishing. Klassik dizaynlardan tortib, zamonaviy tendentsiyalargacha, biz har qanday didga mos keladigan keng imkoniyatlarni taklif etamiz.",
+    izmir_subtitle: "Klassik uslub va mukammal tikuv — kundalik ishonchingiz.",
+    powerful_subtitle: "Zamonaviy dizayn, kuchli ifoda — har bir qadamda ishonch.",
+    zilwer_subtitle: "Yengillik va nafislik birlashgan — qulaylikni tanlang.",
   },
   ru: {
     home: "Главная",
@@ -213,6 +216,9 @@ const translations = {
     gallery_description: "Исследуйте нашу галерею потрясающих джинсов, демонстрирующую нашу мастерскую работу по джинсам. От классических к современным моделям, каждый продукт отражает нашу страсть к джинсам.",
     category: "Категория",
     category_description: "Откройте для себя нашу разнообразную коллекцию джинсов, каждая из которых создана с точностью и стилем. От классических моделей до современных трендов мы предлагаем широкий выбор вариантов, чтобы удовлетворить каждый вкус.",
+    izmir_subtitle: "Классический стиль и безупречный крой — ваша уверенность каждый день.",
+    powerful_subtitle: "	Современный дизайн, сильный образ — уверенность в каждом шаге.",
+    zilwer_subtitle: "Лёгкость и элегантность в одном — выберите комфорт.",
   },
   en: {
     home: "Home",
@@ -332,6 +338,9 @@ const translations = {
     gallery_description: "Explore our gallery of stunning jeans, showcasing the best of our denim craftsmanship. From classic cuts to modern designs, every product reflects our passion for denim.",
     category: "Category",
     category_description: "Discover our diverse collection of jeans, each crafted with precision and style. From classic designs to modern trends, we offer a wide range of options to suit every taste.",
+    izmir_subtitle: "Classic style and flawless tailoring — your everyday confidence.",
+    powerful_subtitle: "Modern design, bold expression — confidence in every step.",
+    zilwer_subtitle: "Lightness and elegance combined — choose comfort.",
   },
 };
 

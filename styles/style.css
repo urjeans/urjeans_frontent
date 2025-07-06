@@ -392,7 +392,7 @@ header {
 }
 
 .carousel-slide:nth-child(1) {
-  background-image: url("../assets/hero/hero-bg1.png");
+  background-image: url("../assets/hero/hero-bg1.jpg");
 }
 
 .carousel-slide:nth-child(2) {
@@ -404,7 +404,7 @@ header {
 }
 
 .carousel-slide:nth-child(4) {
-  background-image: url("../assets/hero/IMG_9133.PNG");
+  background-image: url("../assets/hero/IMG_9133.jpg");
 }
 
 .content-hero {
@@ -1603,22 +1603,6 @@ footer {
   /* Hero section mobile */
   .hero {
     background-color: #00000066;
-  }
-
-  .carousel-slide:nth-child(1) {
-    background-image: url("../assets/hero/hero-bg1.png");
-  }
-
-  .carousel-slide:nth-child(2) {
-    background-image: url("../assets/hero/ckj_fss_city_plaza_02.jpeg");
-  }
-
-  .carousel-slide:nth-child(3) {
-    background-image: url("../assets/hero/150319_Levis_Store_Berlin_045.jpg");
-  }
-
-  .carousel-slide:nth-child(4) {
-    background-image: url("../assets/hero/IMG_9133.PNG");
   }
 
   /* Mobile Text Animations */
