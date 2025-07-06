@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Allow all pages
+Allow: /pages/
+Allow: /assets/
+Allow: /styles/
+Allow: /photos/
+
+# Disallow admin and sensitive areas
+Disallow: /pages/admin.html
+Disallow: /pages/login.html
+Disallow: /pages/loader.html
+
+# Disallow temporary or development files
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /vendor/
+Disallow: /cache/
+Disallow: /temp/
+
+# Allow important files
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /manifest.json
+
+# Sitemap location
+Sitemap: https://urjeans.uz/sitemap.xml
+
+# Crawl delay (optional - reduces server load)
+Crawl-delay: 1 
