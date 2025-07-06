@@ -1078,15 +1078,15 @@ header {
 }
 
 .overlay-index {
-  background: url("../assets/other-photos/aboutus.png") center center / cover no-repeat;
+  background: url("../assets/aboutCover.png") center center / cover no-repeat;
 }
 
 .overlay-showromm {
-  background: url("../assets/other-photos/showroom.png") center center / cover no-repeat;
+  background: url("../assets/about-img/showroomCover.png") center center / cover no-repeat;
 }
 
 .overlay-factory {
-  background: url("../assets/other-photos/factory.png") center center / cover no-repeat;
+  background: url("../assets/about-img/factoryCover.png") center center / cover no-repeat;
 }
 
 
