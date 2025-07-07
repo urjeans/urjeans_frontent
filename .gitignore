@@ -1,1 +1,4 @@
 .DS_Store
+/node_modules
+/BEGIN CERTIFICATE.TXT
+/PRIVATE KEY.TXT
