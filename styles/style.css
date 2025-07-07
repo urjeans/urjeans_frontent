@@ -1793,6 +1793,8 @@ footer {
   .parent div img {
     width: 99%;
     height: auto;
+    object-fit: cover;
+    object-position: center;
   }
 
   /* EXPORT */
