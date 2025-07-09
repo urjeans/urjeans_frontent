@@ -2,25 +2,32 @@
 
 /* Hero */
 .zilver-hero {
-  padding: 60px 20px 20px;
+  padding: 100px 20px 20px;
 }
 
 .zilver-hero-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 100px;
-  justify-content: space-between;
-  align-items: center;
+  gap: 50px;
+  justify-content: space-around;
+  align-items: stretch;
   flex-wrap: wrap;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
+.image-1, .image-2 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .image-2 img, .image-1 img {
   width: 100%;
-  height: 88vh;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 
@@ -41,7 +48,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: 200px;
-  gap: 16px;
+  gap: 10px;
   grid-auto-flow: dense; /* this makes the grid fill gaps smartly */
   width: 1400px;
   margin: 0 auto;
@@ -58,7 +65,7 @@
   position: relative;
   background-size: cover;
   background-position: center;
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s;
 }

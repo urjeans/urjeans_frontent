@@ -41,23 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
   setupAutoScroll(".partners-logo", 560, 3500);
   setupAutoScroll(".parent1", 560, 3500);
 
-  function fadeUpOnScroll() {
-    const fadeEls = document.querySelectorAll(".fade-up");
-    function checkFade() {
-      fadeEls.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 60) {
-          el.classList.add("visible");
-        }
-      });
-    }
-    window.addEventListener("scroll", checkFade);
-    window.addEventListener("resize", checkFade);
-    checkFade();
-  }
-
-  fadeUpOnScroll();
-
   const hamburger = document.getElementById("hamburger-menu");
   const mobileNav = document.getElementById("mobile-nav");
   const body = document.body;
