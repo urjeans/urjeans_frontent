@@ -254,85 +254,191 @@ indicators.forEach((indicator, index) => {
 // Store player instances by key
 const players = {};
 const playerReady = {};
-
-// Fallback for YouTube API loading
-if (typeof YT === 'undefined') {
-  console.log("YouTube API not loaded, waiting for it...");
-  window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-}
+const playerLoaded = {};
 
 // Video configuration for each section
 const videoConfig = {
   index: { 
     playerId: "player-index", 
     previewId: "preview-index", 
-    videoId: "xB3SJ46MukE" 
+    videoId: "xB3SJ46MukE",
+    thumbnailUrl: "https://img.youtube.com/vi/xB3SJ46MukE/maxresdefault.jpg"
   },
   about1: { 
     playerId: "player-about1", 
     previewId: "preview-about1", 
-    videoId: "rsm5IFJYoZY"
+    videoId: "rsm5IFJYoZY",
+    thumbnailUrl: "https://img.youtube.com/vi/rsm5IFJYoZY/maxresdefault.jpg"
   },
   about2: { 
     playerId: "player-about2", 
     previewId: "preview-about2", 
-    videoId: "uEwHLFypNhw"
+    videoId: "uEwHLFypNhw",
+    thumbnailUrl: "https://img.youtube.com/vi/uEwHLFypNhw/maxresdefault.jpg"
   }
 };
 
-function onYouTubeIframeAPIReady() {
-  console.log("YouTube API ready, initializing players...");
+// Initialize YouTube API only when needed
+let youtubeAPIReady = false;
+let youtubeAPILoading = false;
+
+function loadYouTubeAPI() {
+  if (youtubeAPIReady || youtubeAPILoading) return;
   
-  // Create players for each configured section
-  Object.keys(videoConfig).forEach(key => {
-    const cfg = videoConfig[key];
-    
-    // Only create player if the element exists on the page
-    if (document.getElementById(cfg.playerId)) {
-      console.log(`Creating player for ${key}: ${cfg.playerId}`);
-      players[key] = new YT.Player(cfg.playerId, {
-        videoId: cfg.videoId,
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          rel: 0,
-          modestbranding: 1,
-          fs: 0,
-          showinfo: 0,
-        },
-        events: {
-          onReady: () => {
-            console.log(`Player ${key} ready`);
-            playerReady[key] = true;
-          },
-          onError: (event) => {
-            console.error(`Player ${key} error:`, event.data);
-          }
-        },
-      });
-    } else {
-      console.log(`Player element not found: ${cfg.playerId}`);
-    }
+  youtubeAPILoading = true;
+  
+  // Create script tag dynamically
+  const script = document.createElement('script');
+  script.src = 'https://www.youtube.com/iframe_api';
+  script.async = true;
+  
+  script.onload = () => {
+    window.onYouTubeIframeAPIReady = () => {
+      youtubeAPIReady = true;
+      youtubeAPILoading = false;
+      console.log('YouTube API loaded successfully');
+    };
+  };
+  
+  document.head.appendChild(script);
+}
+
+function createPlayer(key) {
+  const cfg = videoConfig[key];
+  
+  if (!youtubeAPIReady) {
+    loadYouTubeAPI();
+    // Wait for API to be ready
+    const checkAPI = setInterval(() => {
+      if (youtubeAPIReady) {
+        clearInterval(checkAPI);
+        createPlayer(key);
+      }
+    }, 100);
+    return;
+  }
+  
+  if (playerLoaded[key]) return;
+  
+  const playerElement = document.getElementById(cfg.playerId);
+  if (!playerElement) return;
+  
+  console.log(`Creating player for ${key}: ${cfg.playerId}`);
+  
+  players[key] = new YT.Player(cfg.playerId, {
+    videoId: cfg.videoId,
+    playerVars: {
+      autoplay: 1, // Autoplay when created
+      controls: 1,
+      rel: 0,
+      modestbranding: 1,
+      fs: 1,
+      showinfo: 0,
+      iv_load_policy: 3, // Disable annotations
+      cc_load_policy: 0, // Disable captions
+    },
+    events: {
+      onReady: () => {
+        console.log(`Player ${key} ready`);
+        playerReady[key] = true;
+        playerLoaded[key] = true;
+      },
+      onError: (event) => {
+        console.error(`Player ${key} error:`, event.data);
+        // Fallback to direct YouTube link
+        const playerElement = document.getElementById(cfg.playerId);
+        if (playerElement) {
+          playerElement.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #000;">
+              <a href="https://www.youtube.com/watch?v=${cfg.videoId}" target="_blank" 
+                 style="color: white; text-decoration: none; padding: 15px 30px; border: 2px solid white; border-radius: 5px;">
+                YouTube'da ko'rish
+              </a>
+            </div>
+          `;
+        }
+      }
+    },
   });
+  
+  playerLoaded[key] = true;
 }
 
 function startVideo(key) {
   const cfg = videoConfig[key];
-  if (playerReady[key] && players[key]) {
-    document.getElementById(cfg.previewId).style.display = "none";
-    players[key].playVideo();
-  } else {
-    // Show a more user-friendly message and retry after a short delay
-    console.log("Video not ready yet, retrying in 1 second...");
-    setTimeout(() => {
-      if (playerReady[key] && players[key]) {
-        document.getElementById(cfg.previewId).style.display = "none";
-        players[key].playVideo();
-      } else {
-        alert("Video hali yuklanmadi. Iltimos, sahifani yangilang va qayta urinib ko'ring.");
-      }
-    }, 1000);
+  
+  // Hide preview overlay
+  const previewElement = document.getElementById(cfg.previewId);
+  if (previewElement) {
+    previewElement.style.display = "none";
   }
+  
+  // Create player if not already created
+  if (!playerLoaded[key]) {
+    createPlayer(key);
+  } else if (playerReady[key] && players[key]) {
+    // Player already exists, just play
+    players[key].playVideo();
+  }
+}
+
+// Alternative lightweight approach - direct YouTube links
+function setupLightweightVideos() {
+  Object.keys(videoConfig).forEach(key => {
+    const cfg = videoConfig[key];
+    const previewElement = document.getElementById(cfg.previewId);
+    
+    if (previewElement) {
+      // Replace the watch button with a direct YouTube link
+      const watchButton = previewElement.querySelector('.watch-button');
+      if (watchButton) {
+        watchButton.onclick = null; // Remove the old onclick
+        watchButton.style.cursor = 'pointer';
+        
+        // Create a new link wrapper
+        const linkWrapper = document.createElement('a');
+        linkWrapper.href = `https://www.youtube.com/watch?v=${cfg.videoId}`;
+        linkWrapper.target = '_blank';
+        linkWrapper.style.textDecoration = 'none';
+        linkWrapper.style.color = 'inherit';
+        
+        // Move the button inside the link
+        watchButton.parentNode.insertBefore(linkWrapper, watchButton);
+        linkWrapper.appendChild(watchButton);
+        
+        // Update button text to indicate it opens in new tab
+        watchButton.innerHTML = watchButton.innerHTML + ' <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 14px;"></i>';
+      }
+    }
+  });
+}
+
+// Preload YouTube API when user hovers over video sections (optional optimization)
+function setupVideoHoverPreload() {
+  Object.keys(videoConfig).forEach(key => {
+    const cfg = videoConfig[key];
+    const previewElement = document.getElementById(cfg.previewId);
+    
+    if (previewElement) {
+      previewElement.addEventListener('mouseenter', () => {
+        // Preload API on hover
+        loadYouTubeAPI();
+      }, { once: true }); // Only trigger once
+    }
+  });
+}
+
+// Initialize hover preloading when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    setupVideoHoverPreload();
+    // Uncomment the line below to use lightweight approach instead
+    // setupLightweightVideos();
+  });
+} else {
+  setupVideoHoverPreload();
+  // Uncomment the line below to use lightweight approach instead
+  // setupLightweightVideos();
 }
 
 const upBtn = document.getElementById("up");

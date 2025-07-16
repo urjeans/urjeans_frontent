@@ -1053,12 +1053,49 @@ header {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: url("../assets/other-photos/youtube-thumball.JPG") center center / cover no-repeat;
+  background: url("../assets/about-img/showroomCover.png") center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-  border-radius: 8px;
+  /* border-radius: 8px; */
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.preview-overlay:hover {
+  opacity: 0.9;
+}
+
+.preview-overlay::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(229, 9, 20, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.preview-overlay::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid white;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 5px;
+  z-index: 2;
 }
 
 .overlay-index {
@@ -1075,14 +1112,26 @@ header {
 
 
 .watch-button {
-  background-color: #e50914;
+  background-color: transparent;
   color: white;
   font-size: 18px;
   padding: 15px 40px;
-  border: none;
+  border: 2px solid white;
   cursor: pointer;
   font-family: var(--matn-font);
   font-weight: 700;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 3;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.watch-button:hover {
+  background-color: rgba(229, 9, 20, 0.9);
+  border-color: #e50914;
+  transform: scale(1.05);
 }
 
 /* Commitment */
