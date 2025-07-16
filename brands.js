@@ -148,7 +148,7 @@ function initializeBrandPage(brandName) {
         // Fabric/material
         const fabricP = document.createElement('p');
         fabricP.className = 'fabric';
-        fabricP.textContent = product.fabric || 'Premium Cotton';
+        fabricP.textContent = product.fabric || '';
         
         // Add sizes information
         const sizesP = document.createElement('p');

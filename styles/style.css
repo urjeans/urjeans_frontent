@@ -731,8 +731,8 @@ header {
 .mobile-nav.active {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -740,7 +740,6 @@ header {
   background: #e5e5e5;
   z-index: 2000;
   animation: fadeInMobileNav 0.3s;
-  padding-left: 4rem;
 }
 
 @keyframes fadeInMobileNav {
@@ -906,9 +905,6 @@ header {
   
 }
 
-.parent > .div4 > img {
-  object-position: top;
-}
 .parent > .div3 > img {
   object-position: bottom;
 }
@@ -1507,18 +1503,17 @@ footer {
   /* Navigation Menu */
   .mobile-ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-left: 40px;
+    padding-top: 40px;
   }
   .mobile-ul {
     font-size: 25px;
     font-weight: 700;
     text-decoration: none;
+    text-align: center;
   }
 
   .ul1 {
@@ -1559,14 +1554,14 @@ footer {
     text-align: center;
     width: 100%;
     padding: 40px 10px;
-    margin-left: -10%;
-    margin-top: 50px;
   }
 
   .mobile-contact {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    justify-content: center;
     width: 100%;
     margin-bottom: 10px;
   }
@@ -1996,10 +1991,10 @@ footer {
 @media (max-width: 768px) {
   .language-selector {
     position: relative;
-    width: fit-content;
     font-family: var(--didot-font, sans-serif);
     user-select: none;
     text-align: center;
+    width: min-content;
     z-index: 100;
   }
 
@@ -2031,9 +2026,8 @@ footer {
 
   .language-options {
     position: absolute;
-    top: 110%;
-    left: 60%;
-    width: 100px;
+    top: -200px;
+    left: 55%;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
