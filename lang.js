@@ -61,7 +61,7 @@ const translations = {
     about_paragraph2:
       "Bugungi kunda URJEANS zamonaviy uskunalar va o'z ishiga sadoqatli malakali jamoa bilan jihozlangan ikki to'liq ishlab chiqarish liniyasiga ega.",
     about_paragraph3:
-      "Har kuni 4 000 juft jinsi ishlab chiqarish quvvatiga ega bo'lgan URJEANS sifat, ishonchlilik va hunarmandchilikni qadrlaydigan mijozlarga xizmat ko'rsatishdan faxrlanadi. Klassikdan tortib zamonaviy uslublargacha – har bir mahsulot bizning jinsi modasiga bo'lgan ishtiyoqimizni aks ettiradi.",
+      "Har kuni 3 000+ juft jinsi ishlab chiqarish quvvatiga ega bo'lgan URJEANS sifat, ishonchlilik va hunarmandchilikni qadrlaydigan mijozlarga xizmat ko'rsatishdan faxrlanadi. Klassikdan tortib zamonaviy uslublargacha – har bir mahsulot bizning jinsi modasiga bo'lgan ishtiyoqimizni aks ettiradi.",
     about_paragraph4:
       "Biz o'sishda davom etar ekanmiz, URJEANS sifat, barqarorlik va mas'uliyatga asoslangan qadriyatlariga sodiq qolmoqda – bu qadriyatlar biz tikkan har bir tikuvda mujassam.",
     production_title: "DENIM ISHLAB CHIQARISH JARAYONI",
@@ -170,7 +170,7 @@ const translations = {
     about_paragraph2:
       "Сегодня URJEANS управляет двумя полноценными производственными линиями, оснащёнными современным оборудованием и квалифицированной командой, нацеленной на стабильное качество.",
     about_paragraph3:
-      "С мощностью до 4 000 пар джинсов в день, мы гордимся тем, что обслуживаем как местных, так и международных клиентов, ценящих надежность, долговечность и мастерство. От классических до современных моделей — каждый продукт отражает нашу страсть к дениму.",
+      "С мощностью до 3 000+ пар джинсов в день, мы гордимся тем, что обслуживаем как местных, так и международных клиентов, ценящих надежность, долговечность и мастерство. От классических до современных моделей — каждый продукт отражает нашу страсть к дениму.",
     about_paragraph4:
       "По мере нашего роста URJEANS остаётся верной качеству, стабильности и ответственности — основным ценностям, которые лежат в основе каждого нашего шва.",
     production_title: "ПРОЦЕСС ПРОИЗВОДСТВА ДЖИНСОВОЙ ОДЕЖДЫ",
@@ -293,7 +293,7 @@ const translations = {
     about_paragraph2:
       "Today, URJEANS operates two full-scale production lines, equipped with modern machinery and a skilled workforce committed to consistent excellence.",
     about_paragraph3:
-      "With the capacity to produce up to 4,000 pairs of jeans per day, we are proud to serve local and international clients seeking reliability, durability, and craftsmanship. From classic cuts to modern designs, every product reflects our passion for denim.",
+      "With the capacity to produce up to 3,000+ pairs of jeans per day, we are proud to serve local and international clients seeking reliability, durability, and craftsmanship. From classic cuts to modern designs, every product reflects our passion for denim.",
     about_paragraph4:
       "As we continue to grow, URJEANS remains rooted in quality, stability, and responsibility — the core values that shape every stitch we sew.",
     production_title: "OUR DENIM PRODUCTION PROCESS",
